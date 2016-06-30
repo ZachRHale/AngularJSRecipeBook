@@ -1,0 +1,36 @@
+<!doctype html>
+<html ng-app="recipeApp">
+  <head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="app/recipes.js"></script>
+  </head>
+  <body>
+    <div class="header">
+        <h1>A recipe book</h1>
+        <hr>
+    </div>
+        <div class="recipes" ng-controller="RecipeController as allRecipes">
+                
+                <div class="recipeBox" ng-repeat="recipe in allRecipes.recipes">
+                <a ng-click="allRecipes.print(recipe)">
+                    <h2>{{recipe.title}}</h2>
+                    <p>{{recipe.calories}}</p>
+                </a>
+                </div>
+                
+        
+
+        <form ng-submit="allRecipes.add()">
+            <input ng-model="allRecipes.title">
+             <input ng-model="allRecipes.calories">
+            <input class="btn-primary" type="submit" value="add">
+        </form>
+
+        </div>
+        
+
+
+    
+  </body>
+</html>
