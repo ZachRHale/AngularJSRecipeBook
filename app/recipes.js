@@ -1,35 +1,50 @@
-class Recipe {
-    constructor(title, calories){
-        this.title = title;
-        this.calories = calories;
-    }
+function dummyController(){
 
 }
 
 angular.module('recipeApp',[])
 .controller('RecipeController', function(){
-    var recipeList = this;
-    recipeList.recipes = [
+    this.recipes = [
         {
             title:'Pizza',
-            calories:1234
+            calories:1234,
+            ingredients:['cheese','meat', 'pep']
         }, 
         {
             title:'Jelly',
-            calories:1034
+            calories:1034,
+            ingredients:['gelatin', 'fruits']
         }
 
     ];
     
 
-    recipeList.add = function() {
-        recipeList.recipes.push({title:recipeList.title, calories:recipeList.calories});
-        recipeList.title = '';
-        recipeList.calories='';
+    this.add = function() {
+        this.recipes.push({title:this.title, calories:this.calories});
+        this.title = '';
+        this.calories='';
     }
 
-    recipeList.print = function(theRecipe) {
-        console.log(theRecipe.title);
+    this.openRecipe = function(theRecipe) {
+        var theIngredients = '';
+       theRecipe.ingredients.forEach(function(item, index){
+            theIngredients += '<div>' + item + '</div>';
+       });
+
+        $("#theContents").html(theIngredients);
+        $(".lightBox h2").html(theRecipe.title);
+        $('.lightBox').fadeIn();
+    }
+
+    this.closeRecipe = function() {
+        $('.lightBox').fadeOut();
     }
 
 })
+.component('showRecipe', {
+      template: '<div><h2>{{$ctrl.recipes.title}}</h2></div>',
+      controller:dummyController, 
+      bindings: {
+          recipe: '='
+      }
+    });

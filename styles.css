@@ -1,5 +1,9 @@
 body {
-    font-family:"Georgia";
+    position:relative;
+}
+
+body {
+    font-family:"Arial";
 }
 
 body h1 {
@@ -19,3 +23,28 @@ body h1 {
     padding:20px;
     border-radius:5px;
 }
+
+.submitButton {
+    width:100px;
+    background-color: #0000CC;
+    color:white;
+}
+
+.lightBox {
+    position:fixed;
+    display:none;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    background-color:rgba(0, 0, 0, 0.9);
+    z-index:100;
+}
+
+.lightBoxContent {
+    position:relative;
+    width:100%;
+    color:white;
+    text-align:center;
+}
+

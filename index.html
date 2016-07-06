@@ -2,7 +2,9 @@
 <html ng-app="recipeApp">
   <head>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+
     <script src="app/recipes.js"></script>
   </head>
   <body>
@@ -13,24 +15,39 @@
         <div class="recipes" ng-controller="RecipeController as allRecipes">
                 
                 <div class="recipeBox" ng-repeat="recipe in allRecipes.recipes">
-                <a ng-click="allRecipes.print(recipe)">
+                <a ng-click="allRecipes.openRecipe(recipe)">
                     <h2>{{recipe.title}}</h2>
                     <p>{{recipe.calories}}</p>
+                    <h4>Ingredients</h4>
+                    <hr>
+                    <div>
+                        <p ng-repeat="ingredient in recipe.ingredients">
+                        {{ingredient}}
+                        </p>
+                    </div>
                 </a>
+
+                            
+
                 </div>
                 
-        
-
         <form ng-submit="allRecipes.add()">
             <input ng-model="allRecipes.title">
              <input ng-model="allRecipes.calories">
-            <input class="btn-primary" type="submit" value="add">
+            <input class="submitButton" type="submit" value="add">
         </form>
 
+            <div class="lightBox">
+                <div class="lightBoxContent">
+                    <h2>Hello</h2>
+                    <div id="theContents">
+                    </div>
+                    <button ng-click="allRecipes.closeRecipe()">Close</button>
+
+                </div>
+            </div>
+
         </div>
-        
 
-
-    
   </body>
 </html>
