@@ -1,10 +1,7 @@
-function dummyController(){
-
-}
-
 angular.module('recipeApp',[])
-.controller('RecipeController', function(){
-    this.recipes = [
+.controller('RecipeController', function($scope){
+    $scope.ingredients = [''];
+    $scope.recipes = [
         {
             title:'Pizza',
             calories:1234,
@@ -17,34 +14,37 @@ angular.module('recipeApp',[])
         }
 
     ];
-    
 
-    this.add = function() {
-        this.recipes.push({title:this.title, calories:this.calories});
-        this.title = '';
-        this.calories='';
+    $scope.add = function() {
+        var ingredientsArray = $.map($scope.ingredients, function(value, index) {
+            return [value];
+        });
+
+        $scope.recipes.push({title:$scope.title, calories:$scope.calories, ingredients:ingredientsArray});
+        $scope.title = '';
+        $scope.calories='';
+        $scope.ingredients = [''];
+
+        
     }
 
-    this.openRecipe = function(theRecipe) {
+    $scope.addIngredient = function() {
+        $scope.ingredients.push('');
+    }
+
+    $scope.openRecipe = function(theRecipe) {
         var theIngredients = '';
        theRecipe.ingredients.forEach(function(item, index){
             theIngredients += '<div>' + item + '</div>';
        });
 
-        $("#theContents").html(theIngredients);
+        $("#theIngredients").html(theIngredients);
         $(".lightBox h2").html(theRecipe.title);
         $('.lightBox').fadeIn();
     }
 
-    this.closeRecipe = function() {
+    $scope.closeRecipe = function() {
         $('.lightBox').fadeOut();
     }
 
-})
-.component('showRecipe', {
-      template: '<div><h2>{{$ctrl.recipes.title}}</h2></div>',
-      controller:dummyController, 
-      bindings: {
-          recipe: '='
-      }
-    });
+});

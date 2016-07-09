@@ -2,9 +2,9 @@
 <html ng-app="recipeApp">
   <head>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/font-awesome/css/font-awesome.min.css">
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-
     <script src="app/recipes.js"></script>
   </head>
   <body>
@@ -12,37 +12,39 @@
         <h1>A recipe book</h1>
         <hr>
     </div>
-        <div class="recipes" ng-controller="RecipeController as allRecipes">
-                
-                <div class="recipeBox" ng-repeat="recipe in allRecipes.recipes">
-                <a ng-click="allRecipes.openRecipe(recipe)">
+        <div class="recipes" ng-controller="RecipeController">
+            <div class="recipeBox" ng-repeat="recipe in recipes">
+                <a ng-click="openRecipe(recipe)">
                     <h2>{{recipe.title}}</h2>
                     <p>{{recipe.calories}}</p>
-                    <h4>Ingredients</h4>
-                    <hr>
-                    <div>
-                        <p ng-repeat="ingredient in recipe.ingredients">
-                        {{ingredient}}
-                        </p>
-                    </div>
                 </a>
-
-                            
-
-                </div>
+        </div>
                 
-        <form ng-submit="allRecipes.add()">
-            <input ng-model="allRecipes.title">
-             <input ng-model="allRecipes.calories">
+        <form class="theForm" ng-submit="add()">
+            <label>Title</label>
+            <input ng-model="title">
+            <label>Calories</label>
+            <input ng-model="calories">
+            <label>Ingredients</label>
+            <div  ng-repeat="ingredient in ingredients track by $index" id="ingredients">
+                <input ng-model="ingredients[$index]" value="stuff">
+                
+            </div>
+            <div class="fa fa-plus fa-3x" ng-click="addIngredient()"></div>
+            
             <input class="submitButton" type="submit" value="add">
         </form>
 
             <div class="lightBox">
                 <div class="lightBoxContent">
-                    <h2>Hello</h2>
-                    <div id="theContents">
+                
+                    <h2></h2>
+                    <hr>
+                    <h3>Ingredients</h3>
+                    <div id="theIngredients">
                     </div>
-                    <button ng-click="allRecipes.closeRecipe()">Close</button>
+
+                    <i ng-click="closeRecipe()" class="fa fa-times fa-2x closeRecipeButton" aria-hidden="true"></i>
 
                 </div>
             </div>

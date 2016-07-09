@@ -1,9 +1,6 @@
 body {
-    position:relative;
-}
-
-body {
     font-family:"Arial";
+    position:relative;
 }
 
 body h1 {
@@ -16,6 +13,7 @@ body h1 {
 }
 
 .recipeBox {
+    cursor:pointer;
     border:1px solid black;
     display:inline-block;
     width:200px;
@@ -43,8 +41,22 @@ body h1 {
 
 .lightBoxContent {
     position:relative;
+    padding-top:40px;
     width:100%;
     color:white;
     text-align:center;
+}
+
+.closeRecipeButton {
+    position:fixed;
+    right:40px;
+    top:20px;
+    cursor:pointer;
+
+}
+
+.theForm input {
+    display:block;
+    margin:0 auto;
 }
 
