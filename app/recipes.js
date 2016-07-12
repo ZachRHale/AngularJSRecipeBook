@@ -5,12 +5,20 @@ angular.module('recipeApp',[])
         {
             title:'Pizza',
             calories:1234,
-            ingredients:['cheese','meat', 'pep']
+            ingredients:[
+                {'amount': 30, 'unit': 'grams', 'ingredient' :'cheese'},
+                {'amount': 10, 'unit': 'grams', 'ingredient' :'bread'},
+                {'amount': 18, 'unit': 'ounces', 'ingredient' :'pep'}
+                ]
         }, 
         {
             title:'Jelly',
             calories:1034,
-            ingredients:['gelatin', 'fruits']
+            ingredients:[
+                {'amount': 30, 'unit': 'grams', 'ingredient' :'cheese'},
+                {'amount': 10, 'unit': 'grams', 'ingredient' :'bread'},
+                {'amount': 18, 'unit': 'ounces', 'ingredient' :'beer'}
+                ]
         }
 
     ];
@@ -35,7 +43,7 @@ angular.module('recipeApp',[])
     $scope.openRecipe = function(theRecipe) {
         var theIngredients = '';
        theRecipe.ingredients.forEach(function(item, index){
-            theIngredients += '<div>' + item + '</div>';
+            theIngredients += '<div>' + item.amount + ' ' + item.unit + ' of ' + item.ingredient + '</div>';
        });
 
         $("#theIngredients").html(theIngredients);

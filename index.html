@@ -26,12 +26,15 @@
             <label>Calories</label>
             <input ng-model="calories">
             <label>Ingredients</label>
+
             <div  ng-repeat="ingredient in ingredients track by $index" id="ingredients">
-                <input ng-model="ingredients[$index]" value="stuff">
+                <input class="ingredientAmount" ng-model="ingredients[$index].amount">
+                <input class="ingredientUnit" ng-model="ingredients[$index].unit">
+                <input class="ingredientIngredient" ng-model="ingredients[$index].ingredient" value="stuff">
                 
             </div>
+
             <div class="fa fa-plus fa-3x" ng-click="addIngredient()"></div>
-            
             <input class="submitButton" type="submit" value="add">
         </form>
 
