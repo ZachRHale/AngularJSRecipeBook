@@ -1,27 +1,7 @@
 angular.module('recipeApp',[])
-.controller('RecipeController', function($scope){
+.controller('RecipeController', function($scope, dataService){
     $scope.ingredients = [''];
-    $scope.recipes = [
-        {
-            title:'Pizza',
-            calories:1234,
-            ingredients:[
-                {'amount': 30, 'unit': 'grams', 'ingredient' :'cheese'},
-                {'amount': 10, 'unit': 'grams', 'ingredient' :'bread'},
-                {'amount': 18, 'unit': 'ounces', 'ingredient' :'pep'}
-                ]
-        }, 
-        {
-            title:'Jelly',
-            calories:1034,
-            ingredients:[
-                {'amount': 30, 'unit': 'grams', 'ingredient' :'cheese'},
-                {'amount': 10, 'unit': 'grams', 'ingredient' :'bread'},
-                {'amount': 18, 'unit': 'ounces', 'ingredient' :'beer'}
-                ]
-        }
-
-    ];
+    
 
     $scope.add = function() {
         var ingredientsArray = $.map($scope.ingredients, function(value, index) {
@@ -55,4 +35,19 @@ angular.module('recipeApp',[])
         $('.lightBox').fadeOut();
     }
 
+    dataService.getRecipes(function(response){
+        console.log(response.data);
+        $scope.recipes = response.data.recipes;
+    });
+
+})
+.service('dataService', function($http) {
+    this.helloWorld = function() {
+        console.log("this is the data service method");
+    };
+
+    this.getRecipes = function(callback){
+        $http.get('/api/recipes')
+        .then(callback)
+    }
 });

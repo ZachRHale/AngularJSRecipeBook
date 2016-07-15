@@ -2,10 +2,10 @@
 <html ng-app="recipeApp">
   <head>
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <link rel="stylesheet" type="text/css" href="node_modules/font-awesome/css/font-awesome.min.css">
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="font-awesome.min.css">
+    <script src="jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-    <script src="app/recipes.js"></script>
+    <script src="recipes.js"></script>
   </head>
   <body>
     <div class="header">
@@ -29,8 +29,15 @@
 
             <div  ng-repeat="ingredient in ingredients track by $index" id="ingredients">
                 <input class="ingredientAmount" ng-model="ingredients[$index].amount">
-                <input class="ingredientUnit" ng-model="ingredients[$index].unit">
-                <input class="ingredientIngredient" ng-model="ingredients[$index].ingredient" value="stuff">
+                <select ng-model="ingredients[$index].unit">
+                    <option>Grams</option>
+                    <option>Kilograms</option>
+                    <option>Pounds</option>
+                    <option>Cups</option>
+                    <option>Quarts</option>
+                    <option>Gallons</option>
+                </select>
+                <input class="ingredientIngredient" ng-model="ingredients[$index].ingredient">
                 
             </div>
 
