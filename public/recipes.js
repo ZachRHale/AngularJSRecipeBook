@@ -8,7 +8,14 @@ angular.module('recipeApp',[])
             return [value];
         });
 
-        $scope.recipes.push({title:$scope.title, calories:$scope.calories, ingredients:ingredientsArray});
+
+        var newRecipe = {title:$scope.title, calories:$scope.calories, ingredients:ingredientsArray};
+
+        dataService.createRecipe(newRecipe);
+
+        $scope.recipes.push(newRecipe);
+
+
         $scope.title = '';
         $scope.calories='';
         $scope.ingredients = [''];
@@ -39,7 +46,6 @@ angular.module('recipeApp',[])
         console.log(response.data);
         $scope.recipes = response.data.recipes;
     });
-
 })
 .service('dataService', function($http) {
     this.helloWorld = function() {
@@ -49,5 +55,9 @@ angular.module('recipeApp',[])
     this.getRecipes = function(callback){
         $http.get('/api/recipes')
         .then(callback)
+    }
+
+    this.createRecipe = function(recipe){
+        $http.post('/api/recipes', recipe);
     }
 });
