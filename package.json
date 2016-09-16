@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "body-parser": "1.15.2",
+    "mongodb": "^2.2.10",
     "mongoose": "4.5.4"
   }
 }
