@@ -58,9 +58,24 @@ body h1 {
 .theForm input {
     display:block;
     margin:0 auto;
+    padding:5px;
+    border-radius:5px;
+    border: 1px solid black;
 }
 
-#ingredients input {
+#ingredients input, select {
     display:inline;
+    padding:5px;
+    border-radius:5px;
+    border: 1px solid black;
+}
+
+.instruction {
+    display: inline-block;
+    width: 60%;
+    height: 100px;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 10px 0 10px 0;
 }
 

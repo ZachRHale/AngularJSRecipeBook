@@ -11,7 +11,8 @@ var ingredientSchema = new mongoose.Schema({
 var recipeSchema = new mongoose.Schema({
     title: String, 
     calories: Number, 
-    ingredients: [ingredientSchema]
+    ingredients: [ingredientSchema], 
+    instructions: [String]
 });
 
 

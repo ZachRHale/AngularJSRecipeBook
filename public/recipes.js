@@ -1,6 +1,7 @@
 angular.module('recipeApp',[])
 .controller('RecipeController', function($scope, dataService){
     $scope.ingredients = [''];
+    $scope.instructions = [''];
     
 
     $scope.add = function() {
@@ -8,17 +9,21 @@ angular.module('recipeApp',[])
             return [value];
         });
 
+        var instructionsArray = $.map($scope.instructions, function(value, index) {
+            return [value];
+        });
 
-        var newRecipe = {title:$scope.title, calories:$scope.calories, ingredients:ingredientsArray};
+
+        var newRecipe = {title:$scope.title, calories:$scope.calories, ingredients:ingredientsArray, instructions:instructionsArray};
 
         dataService.createRecipe(newRecipe);
 
         $scope.recipes.push(newRecipe);
 
-
         $scope.title = '';
         $scope.calories='';
         $scope.ingredients = [''];
+        $scope.instructions = [''];
 
         
     }
@@ -27,13 +32,24 @@ angular.module('recipeApp',[])
         $scope.ingredients.push('');
     }
 
+    $scope.addInstruction = function() {
+        $scope.instructions.push('');
+    }
+
     $scope.openRecipe = function(theRecipe) {
         var theIngredients = '';
+        var theInstructions = '';
+        
        theRecipe.ingredients.forEach(function(item, index){
             theIngredients += '<div>' + item.amount + ' ' + item.unit + ' of ' + item.ingredient + '</div>';
        });
 
+       theRecipe.instructions.forEach(function(item, index){
+            theInstructions += '<div>' + (index + 1) + '. ' + item + '</div>';
+       });
+
         $("#theIngredients").html(theIngredients);
+        $("#theInstructions").html(theInstructions);
         $(".lightBox h2").html(theRecipe.title);
         $('.lightBox').fadeIn();
     }
