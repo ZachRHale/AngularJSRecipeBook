@@ -31,5 +31,8 @@ node src/app.js
 and everything should be working!
 Go to 127.0.0.1:3000 to see the app in action.
 
+#The API#
+The address for the API is 127.0.0.1:3000/api/recipes
+
 
 	
